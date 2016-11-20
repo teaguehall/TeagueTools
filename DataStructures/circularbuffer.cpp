@@ -65,6 +65,9 @@ void CircularBuffer::insert(double val)
 double& CircularBuffer::operator[] (unsigned index)
 {
     return m_buffer[(m_index_write - index) & m_buffer_mask];
+
+    /* Note that the write index is incremented right before a 'insert' call. Thus, the write index within
+     this method corresponds to the most recently inserted value (i.e. not one ahead) */
 }
 
 /************************* Private ****************************/

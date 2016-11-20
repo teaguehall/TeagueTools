@@ -2,28 +2,31 @@
 #define IIRFILTER_H
 
 #include "digitalfilter.h"
-#include "../../DataStructures/circularbuffer.h"
 #include <vector>
 
 class IIRFilter : public DigitalFilter
 {
     public:
-        IIRFilter(std::vector<double> tf_num = {1}, std::vector<double> tf_denom = {1});
-        double update(double input);
-        void clearFilter();
+        IIRFilter(std::vector<double> b_coefs = {1}, std::vector<double> a_coefs = {1});
+        virtual double update(double input) = 0;
+        virtual void clearFilter() = 0;
 
-        void setTransferFunction(std::vector<double> tf_num, std::vector<double> tf_denom);
-        void setTransferFunctionNum(std::vector<double> tf_num);
-        void setTransferFunctionDenom(std::vector<double> tf_denom);
+        void setCoefs(std::vector<double> b_coefs, std::vector<double> a_coefs);
+        void setACoefs(std::vector<double> a_coefs);
+        void setBCoefs(std::vector<double> b_coefs);
 		
-        std::vector<double> getTransferFunctionNum();
-        std::vector<double> getTransferFunctionDenom();
+        std::vector<double> getACoefs();
+        std::vector<double> getBCoefs();
+
+    protected:
+        std::vector<double> m_a_coefs;
+        std::vector<double> m_b_coefs;
+
+        virtual void initFilter() = 0;
 
     private:
-        std::vector<double> m_tf_num;
-        std::vector<double> m_tf_denom;
-        CircularBuffer m_buffer_input;
-        CircularBuffer m_buffer_output;
+        void commonInitFilter();
+
 };
 
 #endif // IIRFILTER_H

@@ -1,15 +1,15 @@
 #include "iirfilter.h"
 
 /**
- * @brief Constructs an IIRFilter with user specified
- * transfer function.
- * @param tf_num Transfer function numerator
- * @param tf_denom Transfer function denominator
+ * @brief Constructs an IIR filter
+ * @param a_coefs The 'a' coefficients of the IIR filter (also known as the denominator coefficients)
+ * @param b_coefs The 'b' coefficients of the IIR filter (also known as the numerator coefficients)
  */
-IIRFilter::IIRFilter(std::vector<double> tf_num, std::vector<double> tf_denom) :
-    m_tf_num(tf_num),
-    m_tf_denom(tf_denom)
+IIRFilter::IIRFilter(std::vector<double> b_coefs, std::vector<double> a_coefs) :
+    m_a_coefs(a_coefs),
+    m_b_coefs(b_coefs)
 {
+    commonInitFilter();
 }
 
 /**
@@ -19,7 +19,7 @@ IIRFilter::IIRFilter(std::vector<double> tf_num, std::vector<double> tf_denom) :
  */
 double IIRFilter::update(double input)
 {
-   return 2.1;
+    return input; // this method will be overwritten, so output whatever
 }
 
 /**
@@ -27,53 +27,82 @@ double IIRFilter::update(double input)
  */
 void IIRFilter::clearFilter()
 {
-    m_buffer_input.clear();
-    m_buffer_output.clear();
 }
 
 /**
- * @brief Sets the transfer function of the filter given
- * @param tf_num Transfer function numerator
- * @param tf_denom Transfer function denominator
+ * @brief Sets the 'a' (denominator) and 'b' (numerator' coefficients of the IIR filter.
+ * @param a_coefs The 'a' (denominator) coefficients
+ * @param b_coefs The 'b' (numerator) coefficients
  */
-void IIRFilter::setTransferFunction(std::vector<double> tf_num, std::vector<double> tf_denom)
+void IIRFilter::setCoefs(std::vector<double> b_coefs, std::vector<double> a_coefs)
 {
-    m_tf_num = tf_num;
-    m_tf_denom = tf_denom;
+    m_a_coefs = a_coefs;
+    m_b_coefs = b_coefs;
+    commonInitFilter();
+    initFilter();
 }
 
 /**
- * @brief Sets the transfer function numerator
- * @param tf_num Transfer function numerator
+ * @brief Sets the 'a'  (denominator) coefficients of the filter
+ * @param a_coefs The 'a' (denominator) coefficents
  */
-void IIRFilter::setTransferFunctionNum(std::vector<double> tf_num)
+void IIRFilter::setACoefs(std::vector<double> a_coefs)
 {
-    m_tf_num = tf_num;
+    m_a_coefs = a_coefs;
+    commonInitFilter();
+    initFilter();
 }
 
 /**
- * @brief Sets the transfer function denominator
- * @param tf_denom Transfer function denominator
+ * @brief Sets the 'b'  (numerator) coefficients of the filter
+ * @param b_coefs The 'b' (numerator) coefficents
  */
-void IIRFilter::setTransferFunctionDenom(std::vector<double> tf_denom)
+void IIRFilter::setBCoefs(std::vector<double> b_coefs)
 {
-    m_tf_denom = tf_denom;
+    m_b_coefs = b_coefs;
+    commonInitFilter();
+    initFilter();
 }
 
 /**
- * @brief Returns the transfer function numerator
- * @return Transfer function numerator
+ * @brief Returns the 'a' (denominator) coefficients
+ * @return Returns the 'a' (denominator) coefficients
  */
-std::vector<double> IIRFilter::getTransferFunctionNum()
+std::vector<double> IIRFilter::getACoefs()
 {
-    return m_tf_num;
+    return m_a_coefs;
 }
 
 /**
- * @brief Returns the transfer function denominator
- * @return Transfer function denominator
+ * @brief Returns the 'b' (numerator) coefficients
+ * @return Returns the 'b' (numerator) coefficients
  */
-std::vector<double> IIRFilter::getTransferFunctionDenom()
+std::vector<double> IIRFilter::getBCoefs()
 {
-    return m_tf_denom;
+    return m_b_coefs;
 }
+
+/******************* Protected *****************/
+
+/**
+ * @brief Function to be called when the filter needs to be initialized (e.g. after the
+ * filter's coefficients have been modified). This function will be specific to classes
+ * that derive from this class.
+ */
+void IIRFilter::initFilter()
+{
+
+}
+
+/******************* Private *****************/
+
+/**
+ * @brief This function will be called to initialize the filter after the impulse response has
+ * been modified. Note that this function contains initialization code that will be common for
+ * all classes that derive from the IIRFilter class.
+ */
+void IIRFilter::commonInitFilter()
+{
+    m_filter_order = m_a_coefs.size() - 1;
+}
+
