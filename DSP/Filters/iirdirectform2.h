@@ -1,14 +1,14 @@
-#ifndef IIRDIRECTFORM1_H
-#define IIRDIRECTFORM1_H
+#ifndef IIRDIRECTFORM2_H
+#define IIRDIRECTFORM2_H
 
 #include "iirfilter.h"
 #include "../../DataStructures/circularbuffer.h"
 #include <vector>
 
-class IIRDirectForm1 : public IIRFilter
+class IIRDirectForm2 : public IIRFilter
 {
     public:
-        IIRDirectForm1(std::vector<double> b_coefs = {1}, std::vector<double> a_coefs = {1});
+        IIRDirectForm2(std::vector<double> b_coefs = {1}, std::vector<double> a_coefs = {1});
         double update(double input);
         void clearFilter();
         std::vector<double> getNormalizedACoefs();
@@ -17,12 +17,12 @@ class IIRDirectForm1 : public IIRFilter
     protected:
         std::vector<double> m_norm_a_coefs;
         std::vector<double> m_norm_b_coefs;
-        CircularBuffer m_buffer_x;
-        CircularBuffer m_buffer_y;
+        CircularBuffer m_buffer;
 
     private:
         void calcNormalizedCoefs();
         void initFilter();
+
 };
 
-#endif // IIRDIRECTFORM1_H
+#endif // IIRDIRECTFORM2_H
