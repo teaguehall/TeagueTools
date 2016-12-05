@@ -8,6 +8,7 @@
 LinearPhaseType1::LinearPhaseType1(std::vector<double> impulse_response) :
     FIRFilter(impulse_response)
 {
+    m_fir_type = linearphasetype1;
     initFilter();
 }
 

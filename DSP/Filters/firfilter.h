@@ -13,15 +13,17 @@ class FIRFilter : public DigitalFilter
         void clearFilter();
         void setImpulseResponse(std::vector<double> impulse_response);
         std::vector<double> getImpulseResponse();
+        enum FIRType {directform, linearphasetype1, linearphasetype2, linearphasetype3, linearphasetype4};
+        FIRType getFIRType();
 
     protected:
         virtual void initFilter() = 0;
         std::vector<double> m_impulse_response;
         CircularBuffer m_buffer;
+        FIRType m_fir_type;
 
     private:
         void commonInitFilter();
-
 };
 
 #endif // FIRFILTER_H

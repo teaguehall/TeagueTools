@@ -38,6 +38,15 @@ std::vector<double> FIRFilter::getImpulseResponse()
     return m_impulse_response;
 }
 
+/**
+ * @brief Returns the FIR type of the object (e.g. linear phase type 1, 2, 3, 4, direct form, etc.)
+ * @return Returns the enumerated FIR type
+ */
+FIRFilter::FIRType FIRFilter::getFIRType()
+{
+        return m_fir_type;
+}
+
 /******************* Protected *****************/
 
 /**
