@@ -11,7 +11,7 @@
  * @param downsample_factor Sets the downsample factor of the filter
  * @param p_in Shared pointer to a data source
  */
-PolyphaseDownSample::PolyphaseDownSample(std::vector<double> impulse_response, unsigned downsample_factor, std::shared_ptr<double> p_in) :
+PolyphaseDownSample::PolyphaseDownSample(const std::vector<double>& impulse_response, unsigned downsample_factor, std::shared_ptr<double> p_in) :
     m_p_in(p_in),
     m_impulse_response(impulse_response),
     m_downsample_factor(downsample_factor)
@@ -43,7 +43,7 @@ std::shared_ptr<double> PolyphaseDownSample::getOutputReference()
  * @brief Sets the impulse response of the polyphase filter
  * @param impulse_response The specified impulse response
  */
-void PolyphaseDownSample::setImpulse(std::vector<double> impulse_response)
+void PolyphaseDownSample::setImpulse(const std::vector<double>& impulse_response)
 {
     m_impulse_response = impulse_response;
     initFilter();

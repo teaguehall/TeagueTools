@@ -8,10 +8,10 @@
 class PolyphaseDownSample
 {
     public:
-        PolyphaseDownSample(std::vector<double> impulse_response, unsigned downsample_factor, std::shared_ptr<double> p_in);
+        PolyphaseDownSample(const std::vector<double>& impulse_response, unsigned downsample_factor, std::shared_ptr<double> p_in);
         void setInputReference(std::shared_ptr<double>);
         std::shared_ptr<double> getOutputReference();
-        void setImpulse(std::vector<double> impulse_response);
+        void setImpulse(const std::vector<double>& impulse_response);
         void setDownsampleFactor(unsigned downsample_factor);
         void clearFilter();
         void update();
