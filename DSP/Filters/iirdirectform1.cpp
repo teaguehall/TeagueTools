@@ -32,7 +32,7 @@ std::vector<double> IIRDirectForm1::getNormalizedBCoefs()
 /**
  * @brief Clears (zeros) the filter
  */
-void IIRDirectForm1::clearFilter()
+void IIRDirectForm1::clear()
 {
     m_buffer_x.clear();
     m_buffer_y.clear();

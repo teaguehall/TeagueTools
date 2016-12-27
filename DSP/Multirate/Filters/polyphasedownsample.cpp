@@ -62,11 +62,11 @@ void PolyphaseDownSample::setDownsampleFactor(unsigned downsample_factor)
 /**
  * @brief Clears (zeros) the filter history
  */
-void PolyphaseDownSample::clearFilter()
+void PolyphaseDownSample::clear()
 {
     for(unsigned i = 0; i < m_filter_array.size(); i++)
     {
-        m_filter_array[i]->clearFilter();
+        m_filter_array[i]->clear();
     }
 }
 

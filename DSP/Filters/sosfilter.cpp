@@ -27,11 +27,11 @@ double SOSFilter::update(double input)
 /**
  * @brief Clears (zeros) the filter history
  */
-void SOSFilter::clearFilter()
+void SOSFilter::clear()
 {
     for(BiquadFilter stage : m_biquad_stages)
     {
-        stage.clearFilter();
+        stage.clear();
     }
 }
 

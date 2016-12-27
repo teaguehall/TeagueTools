@@ -10,7 +10,7 @@ class FIRFilter : public DigitalFilter
     public:
         FIRFilter(std::vector<double> impulse_response ={1});
         virtual double update(double input) = 0;
-        void clearFilter();
+        void clear();
         void setImpulseResponse(std::vector<double> impulse_response);
         std::vector<double> getImpulseResponse();
         enum FIRType {directform, linearphasetype1, linearphasetype2, linearphasetype3, linearphasetype4};

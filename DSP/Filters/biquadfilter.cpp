@@ -32,7 +32,7 @@ std::vector<double> BiquadFilter::getNormalizedBCoefs()
 /**
  * @brief Clears (zeros) the filter
  */
-void BiquadFilter::clearFilter()
+void BiquadFilter::clear()
 {
     std::fill(m_buffer.begin(), m_buffer.end(), 0);
 }

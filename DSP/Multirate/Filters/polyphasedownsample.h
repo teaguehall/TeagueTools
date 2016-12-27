@@ -13,7 +13,7 @@ class PolyphaseDownSample
         std::shared_ptr<double> getOutputReference();
         void setImpulse(const std::vector<double>& impulse_response);
         void setDownsampleFactor(unsigned downsample_factor);
-        void clearFilter();
+        void clear();
         void update();
 
     private:

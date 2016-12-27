@@ -9,7 +9,7 @@ class SOSFilter : public DigitalFilter
     public:
         SOSFilter(std::vector<BiquadFilter> biquad_stages);
         double update(double input);
-        void clearFilter();
+        void clear();
         BiquadFilter getBiquadStage(unsigned i);
         void setBiquadStage(unsigned i, BiquadFilter stage);
         void setBiquads(std::vector<BiquadFilter> biquad_stages);

@@ -6,7 +6,7 @@ class DigitalFilter
     public:
         DigitalFilter();
 		virtual double update(double input) = 0;
-        virtual void clearFilter() = 0;
+        virtual void clear() = 0;
 		int getFilterOrder();
 		
 	protected:

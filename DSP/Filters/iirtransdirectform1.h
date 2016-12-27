@@ -10,7 +10,7 @@ class IIRTransDirectForm1 : public IIRFilter
     public:
         IIRTransDirectForm1(std::vector<double> b_coefs = {1}, std::vector<double> a_coefs = {1});
         double update(double input);
-        void clearFilter();
+        void clear();
         std::vector<double> getNormalizedACoefs();
         std::vector<double> getNormalizedBCoefs();
 

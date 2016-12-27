@@ -13,7 +13,7 @@ FIRFilter::FIRFilter(std::vector<double> impulse_response) :
 /**
  * @brief Clears (zeros) the filter history
  */
-void FIRFilter::clearFilter()
+void FIRFilter::clear()
 {
     m_buffer.clear();
 }

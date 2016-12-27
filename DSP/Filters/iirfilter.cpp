@@ -25,7 +25,7 @@ double IIRFilter::update(double input)
 /**
  * @brief Clears (zeros) the filter history
  */
-void IIRFilter::clearFilter()
+void IIRFilter::clear()
 {
 }
 
