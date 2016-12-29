@@ -2,7 +2,7 @@
 #define POLYFIRQMF_H
 
 #include "qmfbank.h"
-#include "../../Filters/polyphasedownsample.h"
+#include "../../Filters/polyphasedownsampler.h"
 #include <memory>
 
 /// PolyFIRQMF class is a quadrature mirror filter bank (QMF bank) implemented using polyphase
@@ -14,7 +14,7 @@ class PolyFIRQMF : public QMFBank
         /// Creates a quadrature mirror filter bank implemented with polyphase FIR filters.
         /// Provide this constructor with the QMF bank's low pass FIR filter and the corresponding high pass filter
         /// will automatically be calculated
-        /// @param lowpass_imp_response The impulse response of the low pass filter
+        /// @param imp_response_lowpass The impulse response of the low pass filter
         /// @param p_in  A shared pointer to the filter banks input source
         PolyFIRQMF(const std::vector<double>& imp_response_lowpass, std::shared_ptr<double> p_in);
 
@@ -40,8 +40,8 @@ class PolyFIRQMF : public QMFBank
         void update();
 
     private:
-        PolyphaseDownSample m_polyfilter_lowband;
-        PolyphaseDownSample m_polyfilter_highband;
+        PolyphaseDownSampler m_polyfilter_lowband;
+        PolyphaseDownSampler m_polyfilter_highband;
         std::vector<double> m_imp_response_lowpass;
         std::vector<double> m_imp_response_highpass;
 

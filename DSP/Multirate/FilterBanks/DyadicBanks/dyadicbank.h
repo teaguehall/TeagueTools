@@ -13,6 +13,8 @@ class DyadicBank
         /// @param num_of_subbands Number of subbands that the filter bank will output
         DyadicBank(unsigned num_of_subbands);
 
+        virtual ~DyadicBank(){};
+
         /// Returns a vector of shared pointers pointing to each subband output of the filter bank
         /// @return Vectors of shared pointers pointing to each output of the filter bank
         std::vector<std::shared_ptr<double>> getSubbandReferences();
@@ -41,7 +43,7 @@ class DyadicBank
         std::vector<std::shared_ptr<double>> m_p_subbands;
 
         /// Sets the number of outputs of the dyadic filter bank
-        /// @param num_of_outputs Desired number of subbands in which the inputted signal will be decomposed
+        /// @param num_of_subbands Desired number of subbands in which the inputted signal will be decomposed
         void setNumSubbands(unsigned num_of_subbands);
 };
 

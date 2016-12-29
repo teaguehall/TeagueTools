@@ -58,8 +58,8 @@ void PolyFIRQMF::update()
 void PolyFIRQMF::init()
 {
     calcHighpassImpResponse();
-    m_polyfilter_lowband.setImpulse(m_imp_response_lowpass);
-    m_polyfilter_highband.setImpulse(m_imp_response_highpass);
+    m_polyfilter_lowband.setImpResponse(m_imp_response_lowpass);
+    m_polyfilter_highband.setImpResponse(m_imp_response_highpass);
 }
 
 void PolyFIRQMF::calcHighpassImpResponse()

@@ -1,49 +1,27 @@
 #include "iirdirectform1.h"
 
-/**
- * @brief Constructs a 'direct form 1' IIR filter
- * @param a_coefs
- * @param b_coefs
- */
 IIRDirectForm1::IIRDirectForm1(std::vector<double> b_coefs, std::vector<double> a_coefs) :
     IIRFilter(b_coefs, a_coefs)
 {
     initFilter();
 }
 
-/**
- * @brief Returns the normalized 'a' (denominator) coefficients
- * @return Returns the normalized 'a' (denominator) coefficients
- */
 std::vector<double> IIRDirectForm1::getNormalizedACoefs()
 {
     return m_norm_a_coefs;
 }
 
-/**
- * @brief Returns the normalized 'b' (numerator) coefficients
- * @return Returns the normalized 'b' (numerator) coefficients
- */
 std::vector<double> IIRDirectForm1::getNormalizedBCoefs()
 {
     return m_norm_b_coefs;
 }
 
-/**
- * @brief Clears (zeros) the filter
- */
 void IIRDirectForm1::clear()
 {
     m_buffer_x.clear();
     m_buffer_y.clear();
 }
 
-
-/**
- * @brief Updates filter with input and produces corresponding output
- * @param input Filter input value
- * @return Returns the filter output
- */
 double IIRDirectForm1::update(double input)
 {
     double output = 0;
@@ -63,10 +41,10 @@ double IIRDirectForm1::update(double input)
     return output;
 }
 
-/*************** Private **************/
-/**
- * @brief Initializes filter
- */
+/********************
+ * Private Functions
+ ********************/
+
 void IIRDirectForm1::initFilter()
 {
     m_buffer_x.setBufferSize(m_b_coefs.size());
@@ -80,10 +58,6 @@ void IIRDirectForm1::initFilter()
      * thus it will not be included in the normalized 'a' coef vector. */
 }
 
-
-/**
- * @brief Calculates the normalized coefficients to be used in 'direct form' implementations
- */
 void IIRDirectForm1::calcNormalizedCoefs()
 {
     double a0 = m_a_coefs[0];

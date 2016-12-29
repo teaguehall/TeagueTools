@@ -14,7 +14,8 @@ class DyadicPoly : public DyadicBank
 {
     public:
         /// Constructs a dyadic filter bank implemented with polyphase QMFbank stages
-        /// @param num_of_outputs Desired number of subband outputs
+        /// @param num_of_subbands Desired number of subband outputs
+        /// @param fir_imp_response Low pass filter impulse response
         /// @param p_in Reference to dyadic filter bank input source
         DyadicPoly(unsigned num_of_subbands, const std::vector<double>& fir_imp_response, std::shared_ptr<double> p_in);
 

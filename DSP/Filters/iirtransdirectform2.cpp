@@ -1,49 +1,26 @@
 #include "iirtransdirectform2.h"
-#include <iostream>
 
-/**
- * @brief Constructs a 'transposed direct form 2' IIR filter
- * @param a_coefs
- * @param b_coefs
- */
 IIRTransDirectForm2::IIRTransDirectForm2(std::vector<double> b_coefs, std::vector<double> a_coefs) :
     IIRFilter(b_coefs, a_coefs)
 {
     initFilter();
 }
 
-/**
- * @brief Returns the normalized 'a' (denominator) coefficients
- * @return Returns the normalized 'a' (denominator) coefficients
- */
 std::vector<double> IIRTransDirectForm2::getNormalizedACoefs()
 {
     return m_norm_a_coefs;
 }
 
-/**
- * @brief Returns the normalized 'b' (numerator) coefficients
- * @return Returns the normalized 'b' (numerator) coefficients
- */
 std::vector<double> IIRTransDirectForm2::getNormalizedBCoefs()
 {
     return m_norm_b_coefs;
 }
 
-/**
- * @brief Clears (zeros) the filter
- */
 void IIRTransDirectForm2::clear()
 {
     std::fill(m_buffer.begin(), m_buffer.end(), 0);
 }
 
-/**
- * @brief This method updates the filter using transposed direct form 2 implementation
- *
- * @param input Filter input value
- * @return Returns the filter output
- */
 double IIRTransDirectForm2::update(double input)
 {
     unsigned i;
@@ -71,10 +48,10 @@ double IIRTransDirectForm2::update(double input)
    return output;
 }
 
-/*************** Private **************/
-/**
- * @brief Initializes filter
- */
+/********************
+ * Private Functions
+ ********************/
+
 void IIRTransDirectForm2::initFilter()
 {
     sizeBuffer();
@@ -87,9 +64,6 @@ void IIRTransDirectForm2::initFilter()
      * thus it will not be included in the normalized 'a' coef vector. */
 }
 
-/**
- * @brief This method sizes memory buffer based by checking what coefficient array is larger (a or b)
- */
 void IIRTransDirectForm2::sizeBuffer()
 {
     if(m_b_coefs.size() > m_a_coefs.size())
@@ -98,9 +72,6 @@ void IIRTransDirectForm2::sizeBuffer()
         m_buffer.resize(m_a_coefs.size() - 1);
 }
 
-/**
- * @brief Calculates the normalized coefficients to be used in 'direct form' implementations
- */
 void IIRTransDirectForm2::calcNormalizedCoefs()
 {
     double a0 = m_a_coefs[0];
