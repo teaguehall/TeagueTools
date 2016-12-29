@@ -1,5 +1,5 @@
 #ifndef FIRDIRECTFORM_H
-#define FIRDIRECTFORM_H_H
+#define FIRDIRECTFORM_H
 
 #include "firfilter.h"
 
@@ -17,4 +17,4 @@ class FIRDirectForm : public FIRFilter
         void init();
 };
 
-#endif // FIRDIRECTFORM_H_H
+#endif // FIRDIRECTFORM_H
