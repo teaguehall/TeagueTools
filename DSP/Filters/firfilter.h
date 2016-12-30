@@ -17,7 +17,7 @@ class FIRFilter : public DigitalFilter
 
         /// Sets the impulse response of the FIR filter
         /// @param impulse_response Impulse response
-        void setImpulseResponse(std::vector<double> impulse_response);
+        virtual void setImpulseResponse(std::vector<double> impulse_response);
 
         /// Returns the impulse response of the filter
         /// @return Impulse response
@@ -29,7 +29,9 @@ class FIRFilter : public DigitalFilter
             linearphasetype1,   ///< FIR type 'linear phase type 1'
             linearphasetype2,   ///< FIR type 'linear phase type 2'
             linearphasetype3,   ///< FIR type 'linear phase type 3'
-            linearphasetype4    ///< FIR type 'linear phase type 4'
+            linearphasetype4,   ///< FIR type 'linear phase type 4'
+            movingaverage,      ///< FIR type 'moving average'
+            summer              ///< FIR type 'summer'
         };
 
         /// Returns the FIR type of the filter instance (e.g. linear phase type 1, 2, 3, 4, direct form, etc.).
@@ -49,7 +51,7 @@ class FIRFilter : public DigitalFilter
         /// Function to be called when the filter needs to be initialized (e.g. after the
         /// filter's impulse response has been modified). This function will be specific to classes
         /// that derive from the 'FIRFilter' base class.
-        virtual void init() = 0;
+        virtual void init(){};
 
     private:
         /// This function will be called to initialize the filter when the impulse response has

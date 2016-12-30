@@ -18,9 +18,3 @@ double FIRDirectForm::update(double input)
     }
     return output;
 }
-
-/********************
- * Private Functions
- ********************/
-
-void FIRDirectForm::init(){}

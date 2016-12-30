@@ -12,9 +12,6 @@ class FIRDirectForm : public FIRFilter
         FIRDirectForm(std::vector<double> impulse_response);
 
         double update(double input);
-
-    protected:
-        void init();
 };
 
 #endif // FIRDIRECTFORM_H
